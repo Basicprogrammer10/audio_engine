@@ -4,4 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0.75"
+cpal = "0.15.2"
+parking_lot = "0.12.1"
 vector = { path = "../vector" }
