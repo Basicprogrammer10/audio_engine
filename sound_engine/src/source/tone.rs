@@ -13,7 +13,7 @@ pub struct ToneSource {
 }
 
 impl ToneSource {
-    /// Create a new tone with the given frequency and sample rate.
+    /// Create a new tone with the given frequency.
     pub fn new(tone: f32) -> Self {
         Self {
             i: 0,
@@ -29,15 +29,15 @@ impl ToneSource {
     }
 }
 
-impl<const N: usize> SourceSampler<N> for ToneSource {
-    fn get_samples(&mut self, sample_rate: f32, samples: &mut [f32]) {
-        for sample in samples.iter_mut() {
-            self.i += 1;
+impl SourceSampler for ToneSource {
+    fn sample(&mut self, sample_rate: f32) -> f32 {
+        self.i += 1;
 
-            match self.duration {
-                Some(i) if self.i > i => *sample = 0.0,
-                _ => *sample = (self.i as f32 * self.tone * 2.0 * PI / sample_rate).sin(),
-            }
-        }
+        match self.duration {
+            Some(i) if self.i > i => return 0.0,
+            _ => {}
+        };
+
+        (self.i as f32 * self.tone * 2.0 * PI / sample_rate).sin()
     }
 }

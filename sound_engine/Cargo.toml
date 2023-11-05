@@ -7,4 +7,5 @@ edition = "2021"
 anyhow = "1.0.75"
 cpal = "0.15.2"
 parking_lot = "0.12.1"
+soon = { git = "https://github.com/Basicprogrammer10/misc" }
 vector = { path = "../vector" }

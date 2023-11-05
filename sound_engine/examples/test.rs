@@ -1,11 +1,16 @@
-use sound_engine::{Engine, Source, source::SilenceSource};
+use sound_engine::{source::ToneSource, Engine, Pickup, Source};
 use vector::vector;
 
 fn main() {
     let engine = Engine::<2>::new_default().unwrap();
-    engine.run().unwrap();
 
-    engine.add_source(Source::builder().source(SilenceSource).position(vector!(1.0, 5.0)));
+    engine.add_pickup(Pickup::builder());
+    engine.add_pickup(Pickup::builder());
+    engine.add_source(
+        Source::builder()
+            .source(ToneSource::new(340.0))
+            .position(vector!(1.0, 5.0)),
+    );
 
     ::std::thread::park();
 }

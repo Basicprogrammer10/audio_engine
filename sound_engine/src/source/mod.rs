@@ -1,3 +1,4 @@
+use parking_lot::Mutex;
 use vector::Vector;
 
 mod silence;
@@ -13,11 +14,11 @@ pub struct Source<const N: usize> {
     pub position: Vector<f32, N>,
     pub velocity: Vector<f32, N>,
 
-    pub source: Box<dyn SourceSampler<N>>,
+    pub source: Mutex<Box<dyn SourceSampler + Send + Sync>>,
 }
 
-pub trait SourceSampler<const N: usize> {
-    fn get_samples(&mut self, sample_rate: f32, samples: &mut [f32]);
+pub trait SourceSampler {
+    fn sample(&mut self, sample_rate: f32) -> f32;
 }
 
 impl<const N: usize> Source<N> {
@@ -52,8 +53,8 @@ impl<const N: usize> Source<N> {
         self
     }
 
-    pub fn source(mut self, source: impl SourceSampler<N> + 'static) -> Self {
-        self.source = Box::new(source);
+    pub fn source(mut self, source: impl SourceSampler + Send + Sync + 'static) -> Self {
+        self.source = Mutex::new(Box::new(source));
         self
     }
 
@@ -79,7 +80,7 @@ impl<const N: usize> Default for Source<N> {
             channel: 0,
             position: Vector::zero(),
             velocity: Vector::zero(),
-            source: Box::new(SilenceSource),
+            source: Mutex::new(Box::new(SilenceSource)),
         }
     }
 }
