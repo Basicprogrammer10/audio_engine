@@ -1,5 +1,5 @@
 [package]
-name = "sound_engine"
+name = "audio_engine"
 version = "0.1.0"
 edition = "2021"
 
