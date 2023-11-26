@@ -45,9 +45,9 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "cpal",
+ "nd_vec",
  "parking_lot",
  "soon",
- "vector",
 ]
 
 [[package]]
@@ -353,6 +353,15 @@ name = "minimal-lexical"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
+
+[[package]]
+name = "nd_vec"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3221b1a99188efe4dca903d054cc5ac6674526b7fbd708de0fc0af1f6c233ab0"
+dependencies = [
+ "num-traits",
+]
 
 [[package]]
 name = "ndk"
@@ -683,13 +692,6 @@ name = "unicode-ident"
 version = "1.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b"
-
-[[package]]
-name = "vector"
-version = "0.1.0"
-dependencies = [
- "num-traits",
-]
 
 [[package]]
 name = "walkdir"

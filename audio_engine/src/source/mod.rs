@@ -1,5 +1,5 @@
+use nd_vec::Vector;
 use parking_lot::Mutex;
-use vector::Vector;
 
 mod silence;
 mod tone;

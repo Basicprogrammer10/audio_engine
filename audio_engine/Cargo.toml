@@ -6,6 +6,6 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.75"
 cpal = "0.15.2"
+nd_vec = "0.1.0"
 parking_lot = "0.12.1"
 soon = { git = "https://github.com/Basicprogrammer10/misc" }
-vector = { path = "../vector" }

@@ -1,5 +1,5 @@
 use audio_engine::{source::ToneSource, Engine, Pickup, Source};
-use vector::vector;
+use nd_vec::{vector, Vector};
 
 fn main() {
     let engine = Engine::<2>::new_default().unwrap();

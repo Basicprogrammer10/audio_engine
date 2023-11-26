@@ -1,4 +1,4 @@
-use vector::Vector;
+use nd_vec::Vector;
 
 use crate::{consts::SOUND_SPEED, Source};
 
